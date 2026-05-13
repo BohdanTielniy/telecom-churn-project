@@ -45,14 +45,14 @@ class DataExtractor:
                 }
             
             if raw_file_path.exists():
-                metadata.status = "Success"
+                metadata["status"] = "Success"
                 with open(metadata_path, "w", encoding="utf-8") as meta_file:
                     json.dump(metadata, meta_file, indent=4)
                 
                 logger.info(f"Дані успішно завантажені. Метадані зафіксовано у {metadata_path}")
                 return raw_file_path
             else:
-                metadata.status = "Failed"
+                metadata["status"] = "Failed"
                 with open(metadata_path, "w", encoding="utf-8") as meta_file:
                     json.dump(metadata, meta_file, indent=4)
                 raise FileNotFoundError(f"Файл {self.config.source.raw_file_name} не знайдено.")
