@@ -1,6 +1,7 @@
 import yaml
 from pathlib import Path
 from dataclasses import dataclass
+import time
 
 @dataclass
 class SourceConfig:
@@ -20,17 +21,19 @@ class TransformParams:
 
 class ProjectConfig:
     """Клас для централізованого управління конфігураціями проекту."""
-    
+    Path().s
     def __init__(self, config_path: str = "config/etl_config.yaml"):
         self.config_path = Path(config_path)
         self._config_data = self._load_yaml()
         
         # Ініціалізація підконфігів для зручного доступу
         self.source = SourceConfig(**self._config_data['source'])
+        raw_file_name = Path(self._config_data['paths']['name'])
+        log_file_name = raw_file_name if not self._config_data['paths']['timestamped_filename'] else Path(raw_file_name.stem + time.strftime("%Y%m%d_%H%M%S") + raw_file_name.suffix)
         self.paths = PathsConfig(
             raw_data_dir=Path(self._config_data['paths']['raw_data_dir']),
             processed_data_dir=Path(self._config_data['paths']['processed_data_dir']),
-            log_file=Path(self._config_data['paths']['log_file'])
+            log_file=log_file_name
         )
         self.transform = TransformParams(**self._config_data['transform_params'])
 

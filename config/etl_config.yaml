@@ -10,7 +10,10 @@ paths:
   # Директорії для збереження даних та логів
   raw_data_dir: "data/raw/"
   processed_data_dir: "data/processed/"
-  log_file: "logs/etl_process.log"
+  log_file: 
+    dir: "logs/"
+    name: "etl_process.log"
+    timestamped_filename: true
 
 transform_params:
   # Параметри, які знадобляться на етапі Transform
