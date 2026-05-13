@@ -33,7 +33,7 @@ class ProjectConfig:
         self.paths = PathsConfig(
             raw_data_dir=Path(self._config_data['paths']['raw_data_dir']),
             processed_data_dir=Path(self._config_data['paths']['processed_data_dir']),
-            log_file=log_file_name
+            log_file=Path(self._config_data['paths']['log_file']['dir'] / log_file_name)
         )
         self.transform = TransformParams(**self._config_data['transform_params'])
 
