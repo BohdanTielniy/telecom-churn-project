@@ -5,6 +5,8 @@ source:
   kaggle_dataset: "shilongzhuang/telecom-customer-churn-by-maven-analytics"
   # Очікувана назва файлу після завантаження
   raw_file_name: "telecom_customer_churn.csv"
+  # Назва файлу з метаданими завантаження
+  metadata_file_name: "telecom_customer_churn.json"
 
 paths:
   # Директорії для збереження даних та логів

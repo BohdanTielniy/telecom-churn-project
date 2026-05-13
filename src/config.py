@@ -7,6 +7,7 @@ import time
 class SourceConfig:
     kaggle_dataset: str
     raw_file_name: str
+    metadata_file_name: str
 
 @dataclass
 class PathsConfig:
