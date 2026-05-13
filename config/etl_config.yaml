@@ -1,0 +1,19 @@
+# config/etl_config.yaml
+
+source:
+  # Назва датасету в форматі Kaggle API
+  kaggle_dataset: "shilongzhuang/telecom-customer-churn-by-maven-analytics"
+  # Очікувана назва файлу після завантаження
+  raw_file_name: "telecom_customer_churn.csv"
+
+paths:
+  # Директорії для збереження даних та логів
+  raw_data_dir: "data/raw/"
+  processed_data_dir: "data/processed/"
+  log_file: "logs/etl_process.log"
+
+transform_params:
+  # Параметри, які знадобляться на етапі Transform
+  target_column: "Customer Status"
+  # Колонка, яка потребуватиме конвертації з рядка у число
+  charges_column: "Total Charges"
