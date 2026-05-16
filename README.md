@@ -2,17 +2,18 @@
 
 Проєкт метою якого є зменшення відтоку клієнтів телекомпанії на основі історії користування послугами та звернень до підтримки.
 
-## Як запустити
+## Запуск ETL процесу
 
 1. **Створіть та активуйте віртуальне середовище:**
 ```bash
+# Linux/Mac
 python -m venv .venv
-
-# Для Windows:
-.venv\Scripts\activate
-
-# Для Linux/Mac:
 source .venv/bin/activate
+```
+```shell
+# Windows PowerShell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 2. **Встановіть залежності**
 ```bash
@@ -27,7 +28,23 @@ pip install -r requirements.txt
 - Назвіть його ``kagle``
 - Збережіть його в ``~/.kaggle/access_token``
 ```bash
+# Linux/Mac
 mkdir -p ~/.kaggle
 echo *token_name* > ~/.kaggle/access_token
 chmod 600 ~/.kaggle/access_token
+```
+```shell
+# Windows PowerShell
+if (!(Test-Path "$HOME\.kaggle")) { New-Item -ItemType Directory -Path "$HOME\.kaggle" }
+"*token_name*" | Out-File -FilePath "$HOME\.kaggle\access_token" -Encoding ascii
+$path = "$HOME\.kaggle\access_token"
+$acl = Get-Acl $path
+$acl.SetAccessRuleProtection($true, $false)
+$rule = New-Object System.Security.AccessControl.FileSystemAccessRule($env:USERNAME, "FullControl", "Allow")
+$acl.AddAccessRule($rule)
+Set-Acl $path $acl
+```
+4. **Запустіть файл main.py, за потреби змінивши вміст файлу конфігурації ``etl_config.yaml``**
+```bash
+python main.py
 ```

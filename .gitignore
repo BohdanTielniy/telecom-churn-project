@@ -1,5 +1,4 @@
 .venv
-notebooks
 /data/
 logs
 __pycache__
