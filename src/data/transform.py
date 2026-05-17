@@ -1,14 +1,14 @@
 import pandas as pd
 import numpy as np
 import logging
-from src.config import ProjectConfig
+from src.config import ETLConfig
 
 logger = logging.getLogger(__name__)
 
 class DataTransformer:
     """Клас для очищення та перетворення даних телеком-компанії."""
 
-    def __init__(self, config: ProjectConfig):
+    def __init__(self, config: ETLConfig):
         self.config = config
 
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:

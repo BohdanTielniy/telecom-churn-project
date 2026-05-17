@@ -1,14 +1,14 @@
 import logging
 import pandas as pd
 from pathlib import Path
-from src.config import ProjectConfig
+from src.config import ETLConfig
 
 logger = logging.getLogger(__name__)
 
 class DataLoader:
     """Клас для завантаження підготовлених даних у сховище."""
 
-    def __init__(self, config: ProjectConfig):
+    def __init__(self, config: ETLConfig):
         self.config = config
 
     def load(self, df: pd.DataFrame) -> Path:
